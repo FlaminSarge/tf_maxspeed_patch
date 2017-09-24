@@ -4,20 +4,25 @@
 
 #include <sourcemod>
 
+#define DEFAULT_MAXSPEED 520.0
+
 Address pPatchLocation;
 int iRestoreData;
 float speedVal;
 
+
 public Plugin myinfo = {
 	name = "[TF2] Max Speed Patch",
 	author = "FlaminSarge",
-	description = "Unlimits max speed (from 520)",
+	description = "Unlimits max running speed (from 520)",
 	version = "0.1.0",
 	url = "https://github.com/FlaminSarge/tf_maxspeed_patch"
 }
 
 public void OnPluginStart() {
-	ConVar cv_speed = CreateConVar("tf_maxspeed_limit", "1040.0", "[TF2] Max Speed Patch speed limit");
+	char strDefaultSpeed[16];
+	FloatToString(DEFAULT_MAXSPEED, strDefaultSpeed, sizeof(strDefaultSpeed));
+	ConVar cv_speed = CreateConVar("tf_maxspeed_limit", strDefaultSpeed, "[TF2] Max Speed Patch speed limit");
 	cv_speed.AddChangeHook(cvhook_speed);
 	speedVal = cv_speed.FloatValue;
 }
@@ -63,8 +68,8 @@ void ApplyPatch() {	//TODO: Generalize this plugin to use GameConfGetKeyValue to
 	pPatchLocation += view_as<Address>(iOffs);
 
 	iRestoreData = LoadFromAddress(pPatchLocation, NumberType_Int32);
-	if (view_as<float>(iRestoreData) != 520.0) {
-		LogError("Value at (0x%.8X) was not expected: (%.4f) != 520.0. Cowardly refusing to do things.", pPatchLocation, iRestoreData);
+	if (view_as<float>(iRestoreData) != DEFAULT_MAXSPEED) {
+		LogError("Value at (0x%.8X) was not expected: (%.4f) != %.1f. Cowardly refusing to do things.", pPatchLocation, iRestoreData, DEFAULT_MAXSPEED);
 		iRestoreData = 0;
 		pPatchLocation = Address_Null;
 		return;
