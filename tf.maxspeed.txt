@@ -22,9 +22,9 @@
 		{
 			"Offset_ProcessMovement"
 			{
-				"linux"		"106"	//0x6A
 				"windows"	"73"	//0x49
-				"mac"		"86"	//0x56
+				"linux"		"87"	//0x57
+				"mac"		"81"	//0x51
 			}
 		}
 	}
