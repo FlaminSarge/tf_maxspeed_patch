@@ -13,18 +13,21 @@
 		}
 		"Addresses"
 		{
-			"CTFGameMovement::ProcessMovement"
+			"CTFGameMovement::ProcessMovement_limit"
 			{
 				"signature"	"CTFGameMovement::ProcessMovement"
-			}
-		}
-		"Offsets"
-		{
-			"Offset_ProcessMovement"
-			{
-				"windows"	"73"	//0x49
-				"linux"		"87"	//0x57
-				"mac"		"81"	//0x51
+				"windows"
+				{
+					"offset"	"73"	//0x49
+				}
+				"linux"
+				{
+					"offset"	"87"	//0x57
+				}
+				"mac"
+				{
+					"offset"	"81"	//0x51
+				}
 			}
 		}
 	}
