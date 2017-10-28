@@ -15,7 +15,7 @@ public Plugin myinfo = {
 	name = "[TF2] Max Speed Patch",
 	author = "FlaminSarge",
 	description = "Unlimits max running speed (from 520)",
-	version = "0.1.0",
+	version = "1.0.0",
 	url = "https://github.com/FlaminSarge/tf_maxspeed_patch"
 }
 
@@ -50,22 +50,13 @@ void ApplyPatch() {	//TODO: Generalize this plugin to use GameConfGetKeyValue to
 		return;
 	}
 
-	int iOffs = GameConfGetOffset(hGameConf, "Offset_ProcessMovement");
-	if (iOffs == -1) {
-		LogError("Failed to load maxspeed patch: Could not load patch offset");
-		CloseHandle(hGameConf);
-		return;
-	}
-
-	pPatchLocation = GameConfGetAddress(hGameConf, "CTFGameMovement::ProcessMovement");
+	pPatchLocation = GameConfGetAddress(hGameConf, "CTFGameMovement::ProcessMovement_limit");
 	if (pPatchLocation == Address_Null) {
-		LogError("Failed to load maxspeed patch: Failed to locate \"CTFGameMovement::ProcessMovement\"");
+		LogError("Failed to load maxspeed patch: Failed to locate \"CTFGameMovement::ProcessMovement_limit\"");
 		CloseHandle(hGameConf);
 		return;
 	}
 	CloseHandle(hGameConf);
-
-	pPatchLocation += view_as<Address>(iOffs);
 
 	iRestoreData = LoadFromAddress(pPatchLocation, NumberType_Int32);
 	if (view_as<float>(iRestoreData) != DEFAULT_MAXSPEED) {
