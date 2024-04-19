@@ -22,7 +22,7 @@
 				}
 				"linux"
 				{
-					"offset"	"87"	//0x57
+					"offset"	"100"	//0x64
 				}
 				"mac"
 				{
