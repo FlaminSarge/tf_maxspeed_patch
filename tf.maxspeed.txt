@@ -8,7 +8,7 @@
 			{
 				"library"	"server"
 				"linux"		"@_ZN15CTFGameMovement15ProcessMovementEP11CBasePlayerP9CMoveData"
-				"windows"	"\x55\x8B\xEC\x56\x57\x8B\x7D\x08\x8B\xF1\x85\xFF\x74\x2A\x53"
+				"windows"	"\x55\x8B\xEC\x56\x57\x8B\x7D\x2A\x8B\xF1\x85\xFF\x0F\x84\x2A\x2A\x2A\x2A\x83\x7D\x2A\x00"
 			}
 		}
 		"Addresses"
@@ -18,7 +18,7 @@
 				"signature"	"CTFGameMovement::ProcessMovement"
 				"windows"
 				{
-					"offset"	"73"	//0x49
+					"offset"	"80"	//0x50
 				}
 				"linux"
 				{
